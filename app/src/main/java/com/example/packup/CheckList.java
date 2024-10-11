@@ -37,6 +37,7 @@ import com.example.packup.models.Items;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class CheckList extends AppCompatActivity {
         RecyclerView recyclerView;
@@ -145,7 +146,7 @@ public class CheckList extends AppCompatActivity {
         }
 
         if(itemId == R.id.btnExit) {
-            finish();
+            finishAffinity();
         }
         // Handle other menu items if necessary
 
@@ -157,7 +158,7 @@ public class CheckList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_list);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         header = intent.getStringExtra(MyConstants.HEADER_SMALL);
         show = intent.getStringExtra(MyConstants.SHOW_SMALL);
