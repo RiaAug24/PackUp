@@ -16,8 +16,9 @@
         android:layout_height="wrap_content"
         android:layout_weight="5"
         android:id="@+id/checkbox"
+        android:backgroundTint="@color/silver"
         android:layout_gravity="center"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:text="Testing"
         />
 

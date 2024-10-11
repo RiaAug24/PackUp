@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+          android:id="@+id/btnMySelections"
+          android:title="My Selections"
+        />
+    <item
+        android:id="@+id/btnCustomList"
+        android:title="Create Custom List"
+        />
+
+    <item
+        android:title="Reset to default"
+        android:id="@+id/btnReset"
+        />
+
+    <item
+        android:id="@+id/btnDeleteDefault"
+        android:title="Delete default data"
+        />
+
+    <item
+        android:id="@+id/btnExit"
+        android:title="Exit"
+        />
+
+    <item
+        android:id="@+id/btnSearch"
+        android:title="Search"
+        android:icon="@drawable/ic_search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView"
+        />
+
+</menu>

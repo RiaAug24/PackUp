@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">PackUp</string>
     <string name="title_activity_checklist">Checklist</string>
+    <string name="made_by_riyaz_and_sayed"><![CDATA[Made by Riyaz & Sayed]]></string>
 </resources>

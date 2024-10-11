@@ -2,6 +2,7 @@ package com.example.packup.data;
 
 import android.app.Application;
 import android.content.Context;
+import android.widget.Toast;
 
 import com.example.packup.constants.MyConstants;
 import com.example.packup.database.RoomDB;
@@ -84,7 +85,7 @@ public class AppData extends Application {
     }
 
     public List<Items> getClothingData() {
-        String []data = {"Stockings", "T-Shirts", "Trousers", "Nightpants", "Garments", "Casual Dresses", "Evening Dresses", "Jacket", "Hoodie", "Shorts", "Hat", "Scarf", "Casual Shoes", "Raincoats", "Formal Dress", "Suit"};
+        String []data = {"Stockings", "T-Shirts", "Trousers", "Night pants", "Garments", "Casual Dresses", "Evening Dresses", "Jacket", "Hoodie", "Shorts", "Hat", "Scarf", "Casual Shoes", "Raincoats", "Formal Dress", "Suit"};
         return prepareItemsList(MyConstants.CLOTHING_CAMEL_CASE, data);
     }
 
@@ -167,5 +168,71 @@ public class AppData extends Application {
         }
 
         System.out.println("Data Added!");
+    }
+
+
+    public void persistDataByCategory(String category, Boolean onlyDel) {
+        try {
+            List<Items> list = deleteAndGetListByCategory(category, onlyDel);
+            if(!onlyDel) {
+                for (Items item : list) {
+                    database.mainDao().saveItems(item);
+                }
+                Toast.makeText(context, category + " Reset Successfully.", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(context, category + " Reset Successfully.", Toast.LENGTH_SHORT).show();
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(context, "Something went wrong! :(", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
+    private List<Items> deleteAndGetListByCategory(String category, Boolean onlyDel) {
+        if(onlyDel) {
+            database.mainDao().deleteAllByCategoryAndAddedBy(category, MyConstants.SYSTEM_SMALL);
+        } else {
+            database.mainDao().deleteAllByCategory(category);
+        }
+
+        switch (category) {
+            case MyConstants.BASIC_NEEDS_CAMEL_CASE:
+                return getBasicData();
+
+
+            case MyConstants.CLOTHING_CAMEL_CASE:
+                return getClothingData();
+
+            case MyConstants.PERSONAL_CARE_CAMEL_CASE:
+                return getPersonalNeeds();
+
+            case MyConstants.BEACH_SUPPLIES_CAMEL_CASE:
+                return getBeachSuppliesDat();
+
+
+            case MyConstants.BABY_NEEDS_CAMEL_CASE:
+                return getBabyNeeds();
+
+            case MyConstants.HEALTH_CARE_CAMEL_CASE:
+                return getHealthCareData();
+
+            case MyConstants.TECHNOLOGY_CAMEL_CASE:
+                return getTechnologyData();
+
+            case MyConstants.FOOD_CAMEL_CASE:
+                return getFoodData();
+
+
+            case MyConstants.CAR_SUPPLIES_CAMEL_CASE:
+                return getCarSuppliesData();
+
+            case MyConstants.NEEDS_CAMEL_CASE:
+                return getNeedsData();
+            default:
+                return new ArrayList<>();
+        }
     }
 }

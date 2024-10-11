@@ -1,6 +1,5 @@
 package com.example.packup.adapter;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -44,7 +43,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.myViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull myViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
         holder.title.setText(titles.get(position));
         holder.img.setImageResource(images.get(position));
         holder.linearLayout.setAlpha(0.8F);
@@ -53,7 +52,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.myViewHolder>{
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(activity, "Clicked on card.", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(activity, "Clicked on card.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(view.getContext(), CheckList.class);
                 intent.putExtra(MyConstants.HEADER_SMALL, titles.get(position));
                 if (MyConstants.MY_SELECTIONS.equals(titles.get(position))) {

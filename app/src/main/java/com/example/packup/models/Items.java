@@ -29,6 +29,7 @@ public class Items implements Serializable {
     public Items() {}
 
 
+
     public Items(String itemname, String category, Boolean checked) {
         this.addedby = "system";
         this.itemname = itemname;
@@ -42,6 +43,8 @@ public class Items implements Serializable {
         this.addedby = addedby;
         this.checked = checked;
     }
+
+
 
     public String getCategory() {
         return category;
